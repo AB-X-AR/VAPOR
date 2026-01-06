@@ -290,7 +290,7 @@ const labs = [
     icon: Lock,
     color: 'from-purple-500 to-pink-600',
     status: 'Live',
-    externalUrl: 'https://YOUR-USERNAME.github.io/vapor-lab2-cryptoweak' // Replace with your actual URL
+    externalUrl: 'https://vapor-lab2-cryptoweak.vercel.app/' // Replace with your actual URL
   },
   {
     id: 'idor-hunter',
