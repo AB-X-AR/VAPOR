@@ -74,6 +74,17 @@ Directory traversal detected but path invalid.`);
     setMessage('');
   }, []);
 
+  // Handle Lab Card Click - External redirect for Lab 2
+  const handleLabClick = useCallback((labId, externalUrl) => {
+    if (externalUrl) {
+      // Open external lab in new tab
+      window.open(externalUrl, '_blank');
+    } else if (labId === 'locfile') {
+      // Internal lab
+      setSelectedLab(labId);
+    }
+  }, []);
+
   if (selectedLab === 'locfile') {
     return (
       <div style={styles.labContainer}>
@@ -180,13 +191,17 @@ Directory traversal detected but path invalid.`);
             <h2 style={styles.labsTitle}>Available Labs</h2>
             <div style={styles.liveIndicator}>
               <div style={styles.pulse}></div>
-              <span style={styles.liveText}>1 Lab Live</span>
+              <span style={styles.liveText}>3 Labs Live</span>
             </div>
           </div>
           
           <div style={styles.labsGrid}>
             {labs.map((lab) => (
-              <LabCard key={lab.id} lab={lab} onClick={() => setSelectedLab(lab.id)} />
+              <LabCard 
+                key={lab.id} 
+                lab={lab} 
+                onClick={() => handleLabClick(lab.id, lab.externalUrl)} 
+              />
             ))}
           </div>
         </div>
@@ -216,6 +231,7 @@ Directory traversal detected but path invalid.`);
 const LabCard = memo(({ lab, onClick }) => {
   const Icon = lab.icon;
   const isComingSoon = lab.status === 'Coming Soon';
+  const isExternal = !!lab.externalUrl;
 
   return (
     <div 
@@ -226,6 +242,7 @@ const LabCard = memo(({ lab, onClick }) => {
       }}
     >
       {isComingSoon && <div style={styles.comingSoonBadge}>Coming Soon</div>}
+      {isExternal && <div style={styles.externalBadge}>🔗 External Lab</div>}
       
       <div style={{
         ...styles.iconContainer,
@@ -261,27 +278,30 @@ const labs = [
     description: 'Explore a vulnerable file search system. Can you find the hidden flag?',
     icon: Terminal,
     color: 'from-green-500 to-emerald-600',
-    status: 'Live'
+    status: 'Live',
+    externalUrl: null // Internal lab
   },
   {
-    id: 'coming-soon-1',
+    id: 'cryptoweak',
     title: 'CryptoWeak: Token Forgery',
     difficulty: 'Hard',
     category: 'A02 - Cryptographic Failures',
     description: 'Break weak JWT implementation and escalate privileges.',
     icon: Lock,
     color: 'from-purple-500 to-pink-600',
-    status: 'Coming Soon'
+    status: 'Live',
+    externalUrl: 'https://YOUR-USERNAME.github.io/vapor-lab2-cryptoweak' // Replace with your actual URL
   },
   {
-    id: 'coming-soon-2',
+    id: 'idor-hunter',
     title: 'IDOR Hunter: Broken Access',
     difficulty: 'Medium',
     category: 'A03 - Access Control',
     description: 'Exploit predictable references to access unauthorized data.',
     icon: Shield,
     color: 'from-blue-500 to-cyan-600',
-    status: 'Coming Soon'
+    status: 'Live',
+    externalUrl: 'https://YOUR-USERNAME.github.io/vapor-lab3-idor' // Replace with your actual URL
   }
 ];
 
@@ -342,6 +362,19 @@ const styles = {
     fontSize: '0.75rem',
     fontWeight: '600',
     border: '1px solid rgba(234, 179, 8, 0.3)'
+  },
+  
+  externalBadge: {
+    position: 'absolute',
+    top: '1rem',
+    right: '1rem',
+    background: 'rgba(59, 130, 246, 0.2)',
+    color: '#60a5fa',
+    padding: '0.25rem 0.75rem',
+    borderRadius: '9999px',
+    fontSize: '0.75rem',
+    fontWeight: '600',
+    border: '1px solid rgba(59, 130, 246, 0.3)'
   },
   
   iconContainer: { display: 'inline-flex', padding: '0.75rem', borderRadius: '0.5rem', marginBottom: '1rem' },
