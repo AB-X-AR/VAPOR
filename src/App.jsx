@@ -36,8 +36,7 @@ vapor:x:1000:1000:VAPOR User:/home/vapor:/bin/bash`);
 
 flag{tr4v3rs4l_1s_just_th3_b3g1nn1ng}
 
-[!] This flag is invalid.
-[?] Tall the tree goes down the same...`);
+`);
     } else if (query === '/../../../root/flag.txt' || query === '../../../root/flag.txt') {
       setOutput(`🎯 REAL FLAG DISCOVERED!
 
