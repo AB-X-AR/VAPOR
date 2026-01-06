@@ -301,7 +301,7 @@ const labs = [
     icon: Shield,
     color: 'from-blue-500 to-cyan-600',
     status: 'Live',
-    externalUrl: 'https://YOUR-USERNAME.github.io/vapor-lab3-idor' // Replace with your actual URL
+    externalUrl: 'https://vapor-lab3-superleak.vercel.app/' // Replace with your actual URL
   }
 ];
 
