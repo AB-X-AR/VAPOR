@@ -257,7 +257,7 @@ Directory traversal detected but path invalid.`);
                       handleSearch(searchQuery);
                     }
                   }}
-                  placeholder="Enter file path (e.g., ../../../../etc/passwd)"
+                  placeholder="Enter file path (e.g., Operation VAPOR)"
                   style={{
                     flex: 1,
                     background: '#1f2937',
